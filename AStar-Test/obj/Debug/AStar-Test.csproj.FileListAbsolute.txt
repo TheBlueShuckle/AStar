@@ -1,0 +1,7 @@
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\obj\Debug\AStar-Test.csproj.AssemblyReference.cache
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\obj\Debug\AStar-Test.csproj.CoreCompileInputs.cache
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\bin\Debug\AStar-Test.exe.config
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\bin\Debug\AStar-Test.exe
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\bin\Debug\AStar-Test.pdb
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\obj\Debug\AStar-Test.exe
+C:\Users\ville\source\repos\AStar-Test\AStar-Test\obj\Debug\AStar-Test.pdb
