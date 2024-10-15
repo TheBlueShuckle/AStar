@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\ville\\source\\repos\\AStar-Test\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|C:\\Users\\ville\\source\\repos\\AStar-Test\\astar-test\\astar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:astar-test\\astar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|c:\\users\\ville\\source\\repos\\astar-test\\astar-test\\point.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:astar-test\\point.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|c:\\users\\ville\\source\\repos\\astar-test\\astar-test\\astar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:astar-test\\astar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|c:\\users\\ville\\source\\repos\\astar-test\\astar-test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|C:\\Users\\ville\\source\\repos\\AStar-Test\\astar-test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:astar-test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Point.cs",
               "DocumentMoniker": "C:\\Users\\ville\\source\\repos\\AStar-Test\\AStar-Test\\Point.cs",
               "RelativeDocumentMoniker": "AStar-Test\\Point.cs",
@@ -51,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AStar.cs",
               "DocumentMoniker": "C:\\Users\\ville\\source\\repos\\AStar-Test\\AStar-Test\\AStar.cs",
               "RelativeDocumentMoniker": "AStar-Test\\AStar.cs",
               "ToolTip": "C:\\Users\\ville\\source\\repos\\AStar-Test\\AStar-Test\\AStar.cs",
               "RelativeToolTip": "AStar-Test\\AStar.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwCEAAAAAAAAA",
+              "ViewState": "AQIAADMAAAAAAAAAAAAUwDcAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T19:34:46.922Z",
               "EditorCaption": ""
@@ -72,8 +72,7 @@
               "RelativeToolTip": "AStar-Test\\Program.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAIwBkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-14T19:34:09.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-14T19:34:09.585Z"
             }
           ]
         }

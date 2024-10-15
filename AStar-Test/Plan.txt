@@ -1,0 +1,24 @@
+Defs:
+	GetNeighbors (done)
+	EstimateCost
+	FindCheapestNeighbor
+
+Pseudo Code:
+	EstimateCost(start, goal):
+		g is the cost from start to current tile
+		h is the estimated cost from current tile to goal (use euclidiean distance, aka pythagorean distance) 
+
+		returns g + h (the f-cost)
+
+	FindCheapestNeighbor(tile):
+		cheapestTile = null
+
+		for each neighbor of GetNeighbors(tile):
+			if cheapestTile is null or EstimateCost(tile) < EstimateCost(cheapestTile)
+				cheapestTile = tile
+		
+		return tile
+
+Problems:
+	Figure out how to store the cost of tile.
+	
