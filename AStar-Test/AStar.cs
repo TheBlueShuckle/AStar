@@ -10,75 +10,44 @@ namespace AStar_Test
 {
     public class AStar
     {
-        public Point[] Path { get; private set; }
+        public Node[] Path { get; private set; }
 
-        public AStar(int[,] map, Point start, Point goal)
+        public AStar(Node[,] map, Node start, Node goal)
         {
+            Path = FindOptimalPath(map, start, goal);
         }
 
-        private Point[] FindOptimalPath(int[,] map, Point start, Point goal)
+        private Node[] FindOptimalPath(Node[,] map, Node start, Node goal)
         {
-            Dictionary<Point, int> close = new Dictionary<Point, int>();
-            List<Point> open = new List<Point>();
-            Point current = start;
+            Dictionary<Node, int> visited = new Dictionary<Node, int>();
+            Dictionary<Node, int> unvisited = new Dictionary<Node, int>();
 
-            close.Add(start, 1);
+            List<Node> path = new List<Node>();
+
+            Node current = start;
+
+            visited.Add(start, 1);
 
             while (current != goal)
             {
-
+                FindCheapestNeighbor(start, goal);
             }
 
-            return null;
+            return path.ToArray();
         }
 
-        private Point[] GetNeighbors(int[,] map, Point point)
+        private Node FindCheapestNeighbor(Node current, Node goal)
         {
-            List<Point> neighbors = new List<Point>();
+            Node cheapestNeighbor = null;
 
-            if (map.GetLength(0) - 1 != point.X)
+            foreach (Node neighbor in current.neighbors)
             {
-                neighbors.Add(new Point(point.X + 1, point.Y));
-            }
-
-            if (point.X != 0)
-            {
-                neighbors.Add(new Point(point.X - 1, point.Y));
-            }
-
-            if (map.GetLength(1) - 1 != point.Y)
-            {
-                neighbors.Add(new Point(point.X, point.Y + 1));
-            }
-
-            if (point.Y != 0)
-            {
-                neighbors.Add(new Point(point.X, point.Y -  1));
-            }
-
-            return neighbors.ToArray();
-        }
-
-        private Point FindCheapestNeighbor(int[,] map, Point current, Point start, Point goal)
-        {
-            Point cheapestNeighbor = null;
-
-            foreach (Point neighbor in GetNeighbors(map, current))
-            {
-                if (cheapestNeighbor == null || EvaluateCost(current, start, goal) < EvaluateCost(cheapestNeighbor, start, goal)) {
+                if (cheapestNeighbor == null || current.EvaluateCost(goal) < cheapestNeighbor.EvaluateCost(goal)) {
                     cheapestNeighbor = neighbor;
                 }
             }
 
             return cheapestNeighbor;
-        }
-
-        private int EvaluateCost(Point current, Point start, Point goal)
-        {
-            int g_cost = 1;
-            int h_cost = (int)Math.Sqrt(Math.Pow(current.X - goal.X, 2) + Math.Pow(current.Y - goal.Y, 2));
-
-            return g_cost + h_cost;
         }
     }
 }
