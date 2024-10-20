@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +22,43 @@ namespace AStar_Test
 
         private Node[] FindOptimalPath(int[,] map, Node start, Node goal)
         {
-            Dictionary<Node, int> visited = new Dictionary<Node, int>();
-            Dictionary<Node, int> unvisited = new Dictionary<Node, int>();
+            List<Node> unvisited = new List<Node>(); // nodes to be evaluated
+            List<Node> visited = new List<Node>(); // nodes already evaluated
 
-            List<Node> path = new List<Node>();
+            Node[] path;
 
             Node current = start;
 
-            visited.Add(start, 1);
+            unvisited.Add(start);
 
             while (current != goal)
             {
-                current = goal;
+                unvisited.Sort((x, y) => x.EvaluateCost(goal).CompareTo(y.EvaluateCost(goal)));
+                current = unvisited[0];
+
+                Console.WriteLine(current.X + ", " + current.Y);
+
+                unvisited.Remove(current);
+                visited.Add(current);
+
+                foreach (Node neighbor in FindNeighbors(map, current))
+                {
+                    if (!visited.Contains(neighbor))
+                    {
+                        if (neighbor.EvaluateCost(goal) < current.EvaluateCost(goal) || !unvisited.Contains(neighbor))
+                        {
+                            if (!unvisited.Contains(neighbor))
+                            {
+                                unvisited.Add((neighbor));
+                            }
+                        }
+                    }
+                }
             }
 
-            return path.ToArray();
+            path = SetPath(current);
+
+            return path;
         }
 
         private Node FindCheapestNeighbor(int[,] map, Node current, Node goal)
@@ -75,8 +100,8 @@ namespace AStar_Test
                 neighbors.Add(new Node(node, node.X, node.Y - 1));
             }
 
-            // Remove untraversable neighbors
-            foreach (Node neighbor in neighbors)
+            // Remove non-traversable neighbors
+            foreach (Node neighbor in neighbors.ToList())
             {
                 if (map[neighbor.X, neighbor.Y] == 1)
                 {
@@ -85,6 +110,20 @@ namespace AStar_Test
             }
 
             return neighbors.ToArray();
+        }
+
+        private Node[] SetPath(Node current)
+        {
+            List<Node> path = new List<Node>();
+
+            path.Add(current);
+
+            if (current.Parent != null)
+            {
+                path.AddRange(SetPath(current.Parent));
+            }
+
+            return path.ToArray();
         }
     }
 }

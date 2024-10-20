@@ -27,21 +27,24 @@ namespace AStar_Test
 
         public int EvaluateCost(Node goal)
         {
-            int gCost = GetGCost();
+            int gCost = GetGCost(this);
             int hCost = (int)Math.Floor(Math.Sqrt(Math.Pow(X - goal.X, 2) + Math.Pow(Y - goal.Y, 2))); // get euclidian distance to goal
 
             return gCost + hCost;
         }
 
         // Untested
-        private int GetGCost(int cost = 0)
+        private int GetGCost(Node current, int cost = 0)
         {
-            if (this.Parent == null)
+            if (current.Parent != null)
+            {
+                return GetGCost(current.Parent, cost + 1);
+            }
+
+            else
             {
                 return cost;
             }
-
-            return GetGCost(this.Parent.GetGCost(cost + 1));
         }
     }
 }
