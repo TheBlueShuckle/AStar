@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
@@ -12,30 +13,32 @@ namespace AStar_Test
 {
     internal class Program
     {
+        static readonly int[] Start = { 0, 0 };
+        static readonly int[] Goal = { 4, 3 };
+
         static void Main(string[] args)
         {
-            Node[,] map = CreateMap(6, 6);
-            foreach (Node node in map)
-            {
-                node.FindNeighbors(map);
-            }
+            int[,] map = CreateMap(6, 6);
 
-            AStar aStar = new AStar(map, new Node(5, 0, true), new Node(0, 4, true));
+            Node start = new Node(null, Start[0], Start[1]);
+            Node goal = new Node(null, Goal[0], Goal[1]);
+
+            AStar aStar = new AStar(map, start, goal);
 
             DrawMap(map);
 
             Console.ReadLine();
         }
 
-        static Node[,] CreateMap(int width, int height)
+        static int[,] CreateMap(int width, int height)
         {
-            Node[,] map = new Node[width, height];
+            int[,] map = new int[width, height];
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    map[x, y] = new Node(x, y, true);
+                    map[x, y] = 0;
                 }
             }
 
@@ -44,23 +47,36 @@ namespace AStar_Test
             return map;
         }
 
-        static void SetNonWalkableNodes(Node[,] map)
+        static void SetNonWalkableNodes(int[,] map)
         {
-            map[0, 2] = new Node(0, 3, false);
-            map[1, 2] = new Node(0, 3, false);
-            map[2, 2] = new Node(0, 3, false);
-            map[3, 2] = new Node(0, 3, false);
-            map[3, 3] = new Node(0, 3, false);
-            map[3, 4] = new Node(0, 3, false);
+            map[0, 2] = 1;
+            map[1, 2] = 1;
+            map[2, 2] = 1;
+            map[3, 2] = 1;
+            map[3, 3] = 1;
+            map[3, 4] = 1;
         }
 
-        static void DrawMap(Node[,] map)
+        static void DrawMap(int[,] map)
         {
             for(int y = 0; y < map.GetLength(0); y++)
             {
                 for(int x = 0; x < map.GetLength(1); x++)
                 {
-                    Console.Write((map[x, y].IsWalkable ? 1 : 0) + " ");
+                    if (x == Start[0] && y == Start[1])
+                    {
+                        Console.Write("S ");
+                    }
+
+                    else if (x == Goal[0] && y == Goal[1])
+                    {
+                        Console.Write("G ");
+                    }
+
+                    else
+                    {
+                        Console.Write(map[x, y] + " ");
+                    }
                 }
 
                 Console.Write('\n');

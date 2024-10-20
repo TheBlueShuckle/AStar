@@ -11,14 +11,13 @@ namespace AStar_Test
     {
         public int X { get; private set; }
         public int Y { get; private set; }
-        public bool IsWalkable { get; private set; }
-        public Node[] neighbors { get; private set; }
+        public Node Parent { get; private set; }
 
-        public Node(int x, int y, bool isWalkable)
+        public Node(Node parent, int x, int y)
         {
             X = x;
             Y = y;
-            IsWalkable = isWalkable;
+            Parent = parent;
         }
 
         public int[] GetPosition()
@@ -26,39 +25,23 @@ namespace AStar_Test
             return new int[] { X, Y }; // Replace with vector2d in unity
         }
 
-        public void FindNeighbors(Node[,] map)
-        {
-            List<Node> neighbors = new List<Node>();
-
-            if (map.GetLength(0) - 1 != X)
-            {
-                neighbors.Add(new Node(X + 1, Y, IsWalkable));
-            }
-
-            if (X != 0)
-            {
-                neighbors.Add(new Node(X - 1, Y, IsWalkable));
-            }
-
-            if (map.GetLength(1) - 1 != Y)
-            {
-                neighbors.Add(new Node(X, Y + 1, IsWalkable));
-            }
-
-            if (Y != 0)
-            {
-                neighbors.Add(new Node(X, Y - 1, IsWalkable));
-            }
-
-            this.neighbors = neighbors.ToArray();
-        }
-
         public int EvaluateCost(Node goal)
         {
-            int gCost = 1;
-            int hCost = (int)Math.Sqrt(Math.Pow(X - goal.X, 2) + Math.Pow(Y - goal.Y, 2));
+            int gCost = GetGCost();
+            int hCost = (int)Math.Floor(Math.Sqrt(Math.Pow(X - goal.X, 2) + Math.Pow(Y - goal.Y, 2))); // get euclidian distance to goal
 
             return gCost + hCost;
+        }
+
+        // Untested
+        private int GetGCost(int cost = 0)
+        {
+            if (this.Parent == null)
+            {
+                return cost;
+            }
+
+            return GetGCost(this.Parent.GetGCost(cost + 1));
         }
     }
 }
