@@ -25,15 +25,15 @@ namespace AStar_Test
             List<Node> unvisited = new List<Node>(); // nodes to be evaluated
             List<Node> visited = new List<Node>(); // nodes already evaluated
 
-            Node[] path;
-
             Node current = start;
 
             unvisited.Add(start);
 
-            while (current != goal)
+            while (current.GetPosition() != goal.GetPosition())
             {
-                unvisited.Sort((x, y) => x.EvaluateCost(goal).CompareTo(y.EvaluateCost(goal)));
+                unvisited = unvisited.OrderBy(n => n.EvaluateCost(goal)).ToList();
+                unvisited.Reverse();
+
                 current = unvisited[0];
 
                 Console.WriteLine(current.X + ", " + current.Y);
@@ -56,9 +56,7 @@ namespace AStar_Test
                 }
             }
 
-            path = SetPath(current);
-
-            return path;
+            return SetPath(current);
         }
 
         private Node FindCheapestNeighbor(int[,] map, Node current, Node goal)
