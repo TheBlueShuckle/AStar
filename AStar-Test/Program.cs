@@ -13,32 +13,33 @@ namespace AStar_Test
 {
     internal class Program
     {
-        static readonly int[] Start = { 0, 0 };
-        static readonly int[] Goal = { 4, 3 };
+        static readonly int[] Start = { 3, 0 };
+        static readonly int[] Goal = { 2, 4 };
 
         static void Main(string[] args)
         {
-            int[,] map = CreateMap(6, 6);
+            Node[,] map = CreateMap(6, 6);
 
-            Node start = new Node(null, Start[0], Start[1]);
-            Node goal = new Node(null, Goal[0], Goal[1]);
+            Node start = map[Start[0], Start[1]];
+            Node goal = map[Goal[0], Goal[1]];
 
             AStar aStar = new AStar(map, start, goal);
 
-            DrawMap(map);
+            DrawMap(map, aStar.Path);
+            Console.WriteLine("---");
 
             Console.ReadLine();
         }
 
-        static int[,] CreateMap(int width, int height)
+        static Node[,] CreateMap(int width, int height)
         {
-            int[,] map = new int[width, height];
+            Node[,] map = new Node[width, height];
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    map[x, y] = 0;
+                    map[x, y] = new Node(null, x, y, true);
                 }
             }
 
@@ -47,35 +48,60 @@ namespace AStar_Test
             return map;
         }
 
-        static void SetNonWalkableNodes(int[,] map)
+        static void SetNonWalkableNodes(Node[,] map)
         {
-            map[0, 2] = 1;
-            map[1, 2] = 1;
-            map[2, 2] = 1;
-            map[3, 2] = 1;
-            map[3, 3] = 1;
-            map[3, 4] = 1;
+            map[1, 1].IsTraversable = false;
+            map[1, 2].IsTraversable = false;
+            map[2, 1].IsTraversable = false;
+            map[5, 0].IsTraversable = false;
+            map[4, 0].IsTraversable = false;
+            map[4, 1].IsTraversable = false;
+            map[0, 5].IsTraversable = false;
+            map[0, 4].IsTraversable = false;
+            map[1, 4].IsTraversable = false;
+            map[4, 3].IsTraversable = false;
+            map[3, 3].IsTraversable = false;
+            map[3, 4].IsTraversable = false;
         }
 
-        static void DrawMap(int[,] map)
+        static void DrawMap(Node[,] map, Node[] path)
         {
             for(int y = 0; y < map.GetLength(0); y++)
             {
                 for(int x = 0; x < map.GetLength(1); x++)
                 {
+                    bool isPartOfPath = false;
+
                     if (x == Start[0] && y == Start[1])
                     {
                         Console.Write("S ");
+                        continue;
                     }
 
                     else if (x == Goal[0] && y == Goal[1])
                     {
                         Console.Write("G ");
+                        continue;
                     }
 
-                    else
+                    if (path != null)
                     {
-                        Console.Write(map[x, y] + " ");
+                        foreach (Node node in path)
+                        {
+                            if (node.X == x && node.Y == y)
+                            {
+
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write('\u25A0' + " ");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                isPartOfPath = true;
+                            }
+                        }
+                    }
+
+                    if (!isPartOfPath)
+                    {
+                        Console.Write((map[x, y].IsTraversable ? 'O' : '\u25A0') + " ");
                     }
                 }
 

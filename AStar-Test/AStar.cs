@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
@@ -15,93 +16,93 @@ namespace AStar_Test
     {
         public Node[] Path { get; private set; }
 
-        public AStar(int[,] map, Node start, Node goal)
+        public AStar(Node[,] map, Node start, Node goal)
         {
             Path = FindOptimalPath(map, start, goal);
         }
 
-        private Node[] FindOptimalPath(int[,] map, Node start, Node goal)
+        private Node[] FindOptimalPath(Node[,] map, Node start, Node goal)
         {
-            List<Node> unvisited = new List<Node>(); // nodes to be evaluated
-            List<Node> visited = new List<Node>(); // nodes already evaluated
+            List<Node> open = new List<Node>(); // nodes to be evaluated
+            List<Node> close = new List<Node>(); // nodes already evaluated
 
             Node current = start;
 
-            unvisited.Add(start);
+            open.Add(start);
 
-            while (current.GetPosition() != goal.GetPosition())
+            while (open.Count != 0)
             {
-                unvisited = unvisited.OrderBy(n => n.EvaluateCost(goal)).ToList();
-                unvisited.Reverse();
+                open = open.OrderBy(n => n.FCost).ToList();
+                current = open[0];
 
-                current = unvisited[0];
+                open.Remove(current);
+                close.Add(current); 
 
-                Console.WriteLine(current.X + ", " + current.Y);
-
-                unvisited.Remove(current);
-                visited.Add(current);
+                if (current.GetPosition()[0] == goal.GetPosition()[0] && current.GetPosition()[1] == goal.GetPosition()[1])
+                {
+                    break;
+                }
 
                 foreach (Node neighbor in FindNeighbors(map, current))
                 {
-                    if (!visited.Contains(neighbor))
+                    if (!map[neighbor.X, neighbor.Y].IsTraversable || close.Contains(neighbor)) {
+                        continue;
+                    }
+
+                    if (neighbor.Parent == null)
                     {
-                        if (neighbor.EvaluateCost(goal) < current.EvaluateCost(goal) || !unvisited.Contains(neighbor))
+                        neighbor.Parent = current;
+                    }
+
+                    if (neighbor.GetGCost(neighbor) < current.GetGCost(current) || !open.Contains(neighbor))
+                    {
+                        neighbor.EvaluateCost(goal);
+                        neighbor.Parent = current;
+
+                        if (!open.Contains(neighbor))
                         {
-                            if (!unvisited.Contains(neighbor))
-                            {
-                                unvisited.Add((neighbor));
-                            }
+                            open.Add(neighbor);
                         }
                     }
                 }
             }
 
-            return SetPath(current);
-        }
-
-        private Node FindCheapestNeighbor(int[,] map, Node current, Node goal)
-        {
-            Node cheapestNeighbor = null;
-
-            foreach (Node neighbor in FindNeighbors(map, current))
+            if (current.GetPosition()[0] == goal.GetPosition()[0] && current.GetPosition()[1] == goal.GetPosition()[1])
             {
-                if (cheapestNeighbor == null || current.EvaluateCost(goal) < cheapestNeighbor.EvaluateCost(goal))
-                {
-                    cheapestNeighbor = neighbor;
-                }
+                return SetPath(current);
             }
 
-            return cheapestNeighbor;
+            return null;
         }
 
-        private Node[] FindNeighbors(int[,] map, Node node)
+        private Node[] FindNeighbors(Node[,] map, Node node)
         {
             List<Node> neighbors = new List<Node>();
 
             if (map.GetLength(0) - 1 != node.X)
             {
-                neighbors.Add(new Node(node, node.X + 1, node.Y));
+                neighbors.Add(map[node.X + 1, node.Y]);
             }
 
             if (node.X != 0)
             {
-                neighbors.Add(new Node(node, node.X - 1, node.Y));
+                neighbors.Add(map[node.X - 1, node.Y]);
             }
 
             if (map.GetLength(1) - 1 != node.Y)
             {
-                neighbors.Add(new Node(node, node.X, node.Y + 1));
+                neighbors.Add(map[node.X, node.Y + 1]);
             }
 
             if (node.Y != 0)
             {
-                neighbors.Add(new Node(node, node.X, node.Y - 1));
+                neighbors.Add(map[node.X, node.Y - 1]);
             }
 
             // Remove non-traversable neighbors
             foreach (Node neighbor in neighbors.ToList())
             {
-                if (map[neighbor.X, neighbor.Y] == 1)
+                if (!map[neighbor.X, neighbor.Y].IsTraversable)
                 {
                     neighbors.Remove(neighbor);
                 }

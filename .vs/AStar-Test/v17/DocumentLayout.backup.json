@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:AStar-Test\\Node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:AStar-Test\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|c:\\users\\ville\\documents\\github repos\\astar-test\\astar-test\\astar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:astar-test\\astar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\astar-test\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4D13F4B-F43B-447F-A66F-8CF90ED20A23}|AStar-Test\\AStar-Test.csproj|solutionrelative:astar-test\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,39 +38,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Node.cs",
               "DocumentMoniker": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Node.cs",
               "RelativeDocumentMoniker": "AStar-Test\\Node.cs",
               "ToolTip": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Node.cs",
               "RelativeToolTip": "AStar-Test\\Node.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAgwCAAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA1wBwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T19:40:19.022Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AStar.cs",
               "DocumentMoniker": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\AStar.cs",
               "RelativeDocumentMoniker": "AStar-Test\\AStar.cs",
               "ToolTip": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\AStar.cs",
               "RelativeToolTip": "AStar-Test\\AStar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAUwEoAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T19:34:46.922Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Program.cs",
               "RelativeDocumentMoniker": "AStar-Test\\Program.cs",
-              "ToolTip": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Program.cs",
-              "RelativeToolTip": "AStar-Test\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ville\\Documents\\Github Repos\\AStar-Test\\AStar-Test\\Program.cs*",
+              "RelativeToolTip": "AStar-Test\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T19:34:09.585Z",
               "EditorCaption": ""
